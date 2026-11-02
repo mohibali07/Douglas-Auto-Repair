@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Douglas Auto Repair Express | Houston Auto Repair &amp; Roadside Dispatch</title>
+<meta name="description" content="Houston’s most trusted auto repair and rapid roadside dispatch. Transparent digital estimates, mobile mechanics, and full-shop diagnostics at 9525 Boone Rd.">
+<meta property="og:title" content="Douglas Auto Repair Express">
+<meta property="og:description" content="Fast service, transparent pricing, and instant dispatch right to your phone. Houston, TX.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  // Tailwind config: brand tokens from the brief
+  tailwind.config = { theme: { extend: {
+    colors: { primary: '#0f172a', secondary: '#475569', accent: '#f59e0b', surface: '#fafafa' },
+    fontFamily: { head: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'], body: ['Inter', 'system-ui', 'sans-serif'] }
+  } } };
+</script>
+<style>
+  :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { font-family: Inter, system-ui, sans-serif; line-height: 1.7; background: #fafafa; color: #0f172a; padding-bottom: 4.5rem; }
+  h1, h2, h3 { font-family: "Plus Jakarta Sans", system-ui, sans-serif; letter-spacing: -0.03em; line-height: 1.05; }
+  :focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+
+  /* Scroll progress (transform only) */
+  #bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: #f59e0b; transform: scaleX(0); transform-origin: left; z-index: 60; }
+
+  /* Hero headline: masked line rise, staggered */
+  .ln { display: block; overflow: hidden; padding-bottom: .08em; }
+  .ln > span { display: block; transform: translateY(105%); animation: up .8s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i) * 120ms + 100ms); }
+  @keyframes up { to { transform: none; } }
+  .fade { opacity: 0; transform: translateY(16px); animation: fade .7s ease-out forwards; animation-delay: var(--d, 0ms); }
+  @keyframes fade { to { opacity: 1; transform: none; } }
+
+  /* Scroll reveal, once, staggered via --d */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease-out var(--d, 0ms), transform .7s ease-out var(--d, 0ms); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Draw-in lines */
+  .draw { transform: scaleX(0); transform-origin: left; transition: transform .8s ease-out var(--d, 0ms); }
+  .in .draw, .draw.in { transform: scaleX(1); }
+
+  /* Buttons */
+  .btn { transition: transform .25s ease-out, box-shadow .25s ease-out; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -8px rgba(15,23,42,.35); }
+
+  /* Service rows: underline draws, arrow slides */
+  .row { position: relative; }
+  .row::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: #f59e0b; transform: scaleX(0); transform-origin: left; transition: transform .5s ease-out; }
+  .row:hover::after { transform: scaleX(1); }
+  .row .arrow { transition: transform .3s ease-out; }
+  .row:hover .arrow { transform: translateX(6px); }
+
+  /* Live ticket steps */
+  .tk { opacity: .35; transition: opacity .5s ease-out; }
+  .tk.on { opacity: 1; }
+  .tk .dot { transform: scale(.6); transition: transform .4s ease-out; background: #cbd5e1; }
+  .tk.on .dot { transform: scale(1); background: #f59e0b; }
+  #tkFill { transform: scaleX(0); transform-origin: left; transition: transform .6s ease-out; }
+
+  /* Review crossfade */
+  .rv { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease-out; }
+  .rv.on { opacity: 1; }
+
+  /* FAQ */
+  .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease-out; }
+  .faq-body > div { overflow: hidden; }
+  .faq-open .faq-body { grid-template-rows: 1fr; }
+  .chev { transition: transform .3s ease-out; }
+  .faq-open .chev { transform: rotate(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .ln > span, .fade, .reveal, .draw { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div id="bar" aria-hidden="true"></div>
+
+<header id="top" class="sticky top-0 z-40 bg-white/90 backdrop-blur transition-shadow" style="padding-top:env(safe-area-inset-top,0px)">
+  <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between" aria-label="Main">
+    <a href="#top" class="font-head font-extrabold tracking-tight">Douglas <span class="text-secondary font-semibold">Auto Repair Express</span></a>
+    <ul class="hidden lg:flex gap-8 text-sm text-secondary">
+      <li><a class="hover:text-primary" href="#services">Services</a></li>
+      <li><a class="hover:text-primary" href="#dispatch">Mobile Dispatch</a></li>
+      <li><a class="hover:text-primary" href="#apps">App Ecosystem</a></li>
+      <li><a class="hover:text-primary" href="#reviews">Reviews</a></li>
+      <li><a class="hover:text-primary" href="#faq">FAQ</a></li>
+    </ul>
+    <a href="tel:+18326169852" class="btn bg-primary text-white font-head font-bold text-sm px-4 py-2.5 rounded-md">Call Now</a>
+  </nav>
+</header>
+
+<main>
+<!-- Hero -->
+<section class="max-w-6xl mx-auto px-5 pt-16 pb-24 lg:pt-24 grid lg:grid-cols-5 gap-14 items-center">
+  <div class="lg:col-span-3">
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold">
+      <span class="ln"><span style="--i:0">Houston’s Most</span></span>
+      <span class="ln"><span style="--i:1">Trusted Auto Repair</span></span>
+      <span class="ln"><span style="--i:2">&amp; Rapid Roadside</span></span>
+      <span class="ln"><span style="--i:3">Dispatch.</span></span>
+    </h1>
+    <p class="fade mt-8 text-lg text-secondary max-w-lg" style="--d:700ms">From sudden roadside breakdowns to full shop diagnostics. Fast service, transparent pricing, and instant dispatch right to your phone.</p>
+    <div class="fade mt-8 flex flex-col sm:flex-row gap-3" style="--d:850ms">
+      <a href="#book" class="btn bg-accent text-primary font-head font-bold px-6 py-3.5 rounded-md text-center">Request Roadside Dispatch</a>
+      <a href="#book" class="btn border border-slate-300 font-head font-bold px-6 py-3.5 rounded-md text-center">Get Instant Estimate</a>
+    </div>
+    <p class="fade mt-8 text-sm text-secondary" style="--d:1000ms"><strong class="text-primary"><span data-count="4.8" data-dec="1">4.8</span>★ Rating</strong> across <strong class="text-primary"><span data-count="900">900</span>+</strong> Houston Drivers · 9525 Boone Rd, Houston, TX 77099</p>
+  </div>
+
+  <!-- Live dispatch ticket -->
+  <div class="fade lg:col-span-2" style="--d:900ms" aria-label="Example dispatch progress">
+    <div class="border border-slate-200 bg-white rounded-lg p-6 shadow-sm">
+      <p class="font-head font-bold">Your dispatch, step by step</p>
+      <div class="mt-4 h-0.5 bg-slate-100"><div id="tkFill" class="h-full bg-accent"></div></div>
+      <ul class="mt-5 space-y-4 text-sm" id="tk">
+        <li class="tk flex items-center gap-3"><span class="dot w-2.5 h-2.5 rounded-full"></span>Request received</li>
+        <li class="tk flex items-center gap-3"><span class="dot w-2.5 h-2.5 rounded-full"></span>Digital estimate sent to your phone</li>
+        <li class="tk flex items-center gap-3"><span class="dot w-2.5 h-2.5 rounded-full"></span>You approve, mechanic en route</li>
+      </ul>
+      <p class="mt-5 text-xs text-secondary">Sample flow. Live status appears in the Douglas app.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Trust line -->
+<section class="border-y border-slate-200 bg-white" aria-label="Credentials">
+  <ul class="max-w-6xl mx-auto px-5 py-5 flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm text-secondary">
+    <li class="reveal" style="--d:0ms">Serving greater Houston</li>
+    <li class="reveal" style="--d:100ms">Certified mechanics</li>
+    <li class="reveal" style="--d:200ms">Mobile app for dispatch</li>
+    <li class="reveal" style="--d:300ms">Desktop app for estimates</li>
+  </ul>
+</section>
+
+<!-- Problem / solution -->
+<section class="max-w-6xl mx-auto px-5 py-24 grid md:grid-cols-2 gap-12">
+  <div class="reveal">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary">Stranded, then overcharged.</h2>
+    <p class="mt-4 text-secondary max-w-sm">Vague quotes, no arrival time, and invoices you can’t read.</p>
+  </div>
+  <div class="reveal" style="--d:150ms">
+    <h2 class="text-3xl sm:text-4xl font-extrabold">Help on the way, price in writing.</h2>
+    <p class="mt-4 text-secondary max-w-sm">Request in the app, review an itemized estimate, and approve before work starts.</p>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-white py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="reveal text-3xl sm:text-4xl font-extrabold">Three ways we get you moving.</h2>
+    <div class="mt-12">
+      <div class="h-px bg-slate-200 draw"></div>
+      <a id="dispatch" href="#book" class="row reveal flex items-start justify-between gap-6 py-8">
+        <div><h3 class="text-2xl font-bold">Mobile Roadside Dispatch</h3><p class="mt-2 text-secondary max-w-xl">A mechanic comes to you for jump starts, tires, lockouts, and on-site repairs. Powered by the Douglas mobile app.</p></div>
+        <span class="arrow text-2xl text-accent" aria-hidden="true">&rarr;</span>
+      </a>
+      <div class="h-px bg-slate-200"></div>
+      <a href="#book" class="row reveal flex items-start justify-between gap-6 py-8">
+        <div><h3 class="text-2xl font-bold">Full-Shop Diagnostics &amp; Repair</h3><p class="mt-2 text-secondary max-w-xl">Engine, brakes, suspension, and electrical at 9525 Boone Rd, with clear findings before any work.</p></div>
+        <span class="arrow text-2xl text-accent" aria-hidden="true">&rarr;</span>
+      </a>
+      <div class="h-px bg-slate-200"></div>
+      <a id="apps" href="#book" class="row reveal flex items-start justify-between gap-6 py-8">
+        <div><h3 class="text-2xl font-bold">Instant Estimate &amp; Invoicing</h3><p class="mt-2 text-secondary max-w-xl">Itemized parts and labor, built in our desktop app and shared with you before you approve.</p></div>
+        <span class="arrow text-2xl text-accent" aria-hidden="true">&rarr;</span>
+      </a>
+      <div class="h-px bg-slate-200"></div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="max-w-6xl mx-auto px-5 py-24">
+  <h2 class="reveal text-3xl sm:text-4xl font-extrabold">How it works</h2>
+  <ol class="mt-12 grid md:grid-cols-3 gap-10">
+    <li class="reveal" style="--d:0ms"><div class="h-0.5 bg-accent draw" style="--d:0ms"></div><p class="mt-5 font-head font-bold text-xl">1. Request help</p><p class="mt-2 text-secondary">Use the app or call +1 832-616-9852.</p></li>
+    <li class="reveal" style="--d:250ms"><div class="h-0.5 bg-accent draw" style="--d:250ms"></div><p class="mt-5 font-head font-bold text-xl">2. Review your estimate</p><p class="mt-2 text-secondary">Get a transparent digital estimate and approve it.</p></li>
+    <li class="reveal" style="--d:500ms"><div class="h-0.5 bg-accent draw" style="--d:500ms"></div><p class="mt-5 font-head font-bold text-xl">3. Back on the road</p><p class="mt-2 text-secondary">Fast shop repair, or a mechanic dispatched to you.</p></li>
+  </ol>
+</section>
+
+<!-- Reviews: one quote at a time -->
+<section id="reviews" class="bg-primary text-white py-24">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <p class="reveal text-slate-300"><span class="text-accent">4.8★</span> from 900+ Houston drivers</p>
+    <div class="reveal relative mt-8 h-56 sm:h-44" id="rv" aria-live="polite">
+      <figure class="rv on"><blockquote class="font-head text-2xl sm:text-3xl font-bold leading-snug">“They showed me the estimate on my phone before touching the car. No surprises at pickup.”</blockquote><figcaption class="mt-4 text-sm text-slate-400">Sample review · Alief, Houston</figcaption></figure>
+      <figure class="rv"><blockquote class="font-head text-2xl sm:text-3xl font-bold leading-snug">“Battery died on a Sunday night. A mechanic reached me and had me running fast.”</blockquote><figcaption class="mt-4 text-sm text-slate-400">Sample review · Southwest Houston</figcaption></figure>
+      <figure class="rv"><blockquote class="font-head text-2xl sm:text-3xl font-bold leading-snug">“Clear invoice, fair price, and they explained every line.”</blockquote><figcaption class="mt-4 text-sm text-slate-400">Sample review · Boone Rd area</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="max-w-3xl mx-auto px-5 py-24">
+  <h2 class="reveal text-3xl sm:text-4xl font-extrabold">Questions drivers ask us</h2>
+  <div class="mt-10 divide-y divide-slate-200 border-y border-slate-200" id="faqList">
+    <div class="reveal">
+      <button class="w-full flex justify-between items-center gap-4 py-5 text-left font-head font-bold text-lg" aria-expanded="false"><span>Will the price change after you start?</span><svg class="chev w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="faq-body"><div><p class="pb-5 text-secondary">You approve an itemized digital estimate first. If we find something new, we send an updated estimate and wait for your approval.</p></div></div>
+    </div>
+    <div class="reveal" style="--d:100ms">
+      <button class="w-full flex justify-between items-center gap-4 py-5 text-left font-head font-bold text-lg" aria-expanded="false"><span>How fast can a mechanic reach me?</span><svg class="chev w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="faq-body"><div><p class="pb-5 text-secondary">Arrival time depends on your location and demand. The app shows your dispatch status, or call +1 832-616-9852 for a current estimate.</p></div></div>
+    </div>
+    <div class="reveal" style="--d:200ms">
+      <button class="w-full flex justify-between items-center gap-4 py-5 text-left font-head font-bold text-lg" aria-expanded="false"><span>Is the work under warranty?</span><svg class="chev w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="faq-body"><div><p class="pb-5 text-secondary">Warranty terms are listed on your estimate and invoice for each repair. Ask us about coverage before you approve.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section id="book" class="bg-white py-24">
+  <div class="max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <h2 class="text-4xl sm:text-5xl font-extrabold">Need help now?</h2>
+      <p class="mt-4 text-secondary max-w-md">Tell us what’s wrong and we’ll reply with next steps. Or call dispatch directly.</p>
+      <a href="tel:+18326169852" class="btn mt-6 inline-block bg-accent text-primary font-head font-bold text-xl px-6 py-3.5 rounded-md">Call Dispatch: +1 832-616-9852</a>
+    </div>
+    <form id="bookForm" class="reveal space-y-5" style="--d:150ms" novalidate>
+      <div><label for="name" class="block text-sm font-semibold mb-1">Your name</label><input id="name" required autocomplete="name" class="w-full border-0 border-b-2 border-slate-300 bg-transparent px-0 py-2.5 focus:border-accent focus:ring-0 outline-none transition-colors"></div>
+      <div><label for="phone" class="block text-sm font-semibold mb-1">Phone number</label><input id="phone" type="tel" required autocomplete="tel" class="w-full border-0 border-b-2 border-slate-300 bg-transparent px-0 py-2.5 focus:border-accent focus:ring-0 outline-none transition-colors"></div>
+      <div><label for="need" class="block text-sm font-semibold mb-1">What do you need?</label>
+        <select id="need" class="w-full border-0 border-b-2 border-slate-300 bg-transparent px-0 py-2.5 focus:border-accent focus:ring-0 outline-none"><option>Roadside dispatch</option><option>Shop estimate</option><option>Diagnostics</option></select></div>
+      <button class="btn w-full bg-primary text-white font-head font-bold py-3.5 rounded-md" type="submit">Get My Estimate Now</button>
+      <p id="formMsg" class="text-sm text-secondary" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="bg-primary text-slate-300 text-sm py-12">
+  <div class="max-w-6xl mx-auto px-5 grid sm:grid-cols-3 gap-8">
+    <div><p class="font-head font-bold text-white text-base">Douglas Auto Repair Express</p><p class="mt-2">9525 Boone Rd, Locales B2-S4 &amp; B2-S5<br>Houston, TX 77099</p><p class="mt-2"><a class="hover:text-white" href="tel:+18326169852">+1 832-616-9852</a></p></div>
+    <div><p class="font-semibold text-white">Hours</p><p class="mt-2">Please call to confirm current shop and dispatch hours.</p></div>
+    <div><p class="font-semibold text-white">Quick links</p><ul class="mt-2 space-y-1"><li><a class="hover:text-white" href="#services">Services</a></li><li><a class="hover:text-white" href="#reviews">Reviews</a></li><li><a class="hover:text-white" href="#faq">FAQ</a></li></ul></div>
+  </div>
+  <p class="max-w-6xl mx-auto px-5 mt-8 pt-6 border-t border-slate-700 text-xs text-slate-400">© 2026 Douglas Auto Repair Express. Estimates are not final until approved in writing. Roadside response times vary by location and demand.</p>
+</footer>
+
+<!-- Floating mobile call bar -->
+<div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-slate-200 p-3 flex gap-2" style="padding-bottom:calc(.75rem + env(safe-area-inset-bottom,0px))">
+  <a href="tel:+18326169852" class="btn flex-1 bg-accent text-primary font-head font-bold text-center py-3 rounded-md">Call Dispatch</a>
+  <a href="#book" class="btn flex-1 bg-primary text-white font-head font-bold text-center py-3 rounded-md">Get Estimate</a>
+</div>
+
+<script>
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal (once) + count-up when visible
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .draw').forEach(el => io.observe(el));
+
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const end = parseFloat(el.dataset.count), dec = +el.dataset.dec || 0;
+    if (calm) return;
+    const t0 = performance.now() + 900;
+    const tick = (t) => {
+      const p = Math.min(Math.max((t - t0) / 1400, 0), 1), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (end * eased).toFixed(dec);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+
+  // Scroll progress bar + header shadow
+  const bar = document.getElementById('bar'), header = document.querySelector('header');
+  addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+    header.classList.toggle('shadow-sm', scrollY > 8);
+  }, { passive: true });
+
+  // Dispatch ticket: steps light up in sequence, then loop
+  const steps = [...document.querySelectorAll('#tk .tk')], fill = document.getElementById('tkFill');
+  let s = 0;
+  const run = () => {
+    steps.forEach((el, i) => el.classList.toggle('on', i <= s));
+    fill.style.transform = 'scaleX(' + (s + 1) / steps.length + ')';
+    s = (s + 1) % steps.length;
+  };
+  if (calm) { s = steps.length - 1; run(); } else { setTimeout(() => { run(); setInterval(run, 2200); }, 1600); }
+
+  // Review crossfade
+  const rv = [...document.querySelectorAll('#rv .rv')]; let r = 0;
+  if (!calm) setInterval(() => { rv[r].classList.remove('on'); r = (r + 1) % rv.length; rv[r].classList.add('on'); }, 5000);
+
+  // FAQ accordion
+  document.querySelectorAll('#faqList button').forEach(btn => btn.addEventListener('click', () => {
+    btn.setAttribute('aria-expanded', btn.parentElement.classList.toggle('faq-open'));
+  }));
+
+  // Quick booking form (front-end only; connect to your dispatch system)
+  document.getElementById('bookForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('formMsg');
+    if (!name.value.trim() || phone.value.replace(/\D/g, '').length < 10) {
+      msg.textContent = 'Enter your name and a 10-digit phone number.'; msg.className = 'text-sm text-red-600'; return;
+    }
+    msg.textContent = 'Request received. For the fastest help, call +1 832-616-9852.'; msg.className = 'text-sm text-green-700';
+  });
+</script>
+</body>
+</html>
