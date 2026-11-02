@@ -54,6 +54,11 @@
   .row:hover::after { transform: scaleX(1); }
   .row .arrow { transition: transform .3s ease-out; }
   .row:hover .arrow { transform: translateX(6px); }
+  .row > div { flex: 1; }
+  .row .arrow { margin-left: auto; }
+  .pic { display: block; width: 100%; aspect-ratio: 3 / 2; border-radius: 8px; overflow: hidden; }
+  @media (min-width: 640px) { .thumb { width: 176px; flex: none; } }
+  html, body { overflow-x: hidden; }
 
   /* Live ticket steps */
   .tk { opacity: .35; transition: opacity .5s ease-out; }
@@ -63,7 +68,7 @@
   #tkFill { transform: scaleX(0); transform-origin: left; transition: transform .6s ease-out; }
 
   /* Review crossfade */
-  .rv { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease-out; }
+  .rv { grid-area: 1 / 1; opacity: 0; transition: opacity .6s ease-out; }
   .rv.on { opacity: 1; }
 
   /* FAQ */
@@ -82,10 +87,16 @@
 </head>
 <body>
 <div id="bar" aria-hidden="true"></div>
+<!-- Inline illustrations (hosted pages block remote images, so art is embedded) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tow" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><rect width="240" height="160" fill="#1e293b"/><circle cx="200" cy="34" r="14" fill="#f59e0b"/><rect y="120" width="240" height="40" fill="#0f172a"/><path d="M0 140h240" stroke="#475569" stroke-width="2" stroke-dasharray="14 12"/><rect x="50" y="74" width="72" height="16" rx="6" fill="#94a3b8"/><path d="M32 112h112V92H46z" fill="#f59e0b"/><path d="M144 112V80h28l16 16v16z" fill="#e2e8f0"/><path d="M152 86h16l8 10h-24z" fill="#1e293b"/><rect x="150" y="73" width="14" height="5" rx="2" fill="#f59e0b"/><circle cx="60" cy="114" r="12" fill="#0f172a" stroke="#e2e8f0" stroke-width="3"/><circle cx="166" cy="114" r="12" fill="#0f172a" stroke="#e2e8f0" stroke-width="3"/></symbol>
+  <symbol id="i-shop" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><rect width="240" height="160" fill="#1e293b"/><rect x="70" y="62" width="100" height="62" rx="8" fill="#334155"/><rect x="86" y="44" width="68" height="20" rx="4" fill="#475569"/><rect x="84" y="76" width="14" height="34" rx="3" fill="#64748b"/><rect x="113" y="76" width="14" height="34" rx="3" fill="#64748b"/><rect x="142" y="76" width="14" height="34" rx="3" fill="#64748b"/><g transform="rotate(-35 120 84)"><rect x="36" y="79" width="170" height="10" rx="5" fill="#f59e0b"/><circle cx="44" cy="84" r="15" fill="#f59e0b"/><circle cx="44" cy="84" r="6" fill="#1e293b"/></g></symbol>
+  <symbol id="i-inv" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><rect width="240" height="160" fill="#1e293b"/><rect x="72" y="20" width="96" height="122" rx="8" fill="#fafafa"/><rect x="86" y="36" width="50" height="6" rx="3" fill="#0f172a"/><rect x="86" y="54" width="68" height="5" rx="2" fill="#cbd5e1"/><rect x="86" y="68" width="68" height="5" rx="2" fill="#cbd5e1"/><rect x="86" y="82" width="46" height="5" rx="2" fill="#cbd5e1"/><rect x="86" y="102" width="68" height="8" rx="3" fill="#f59e0b"/><circle cx="150" cy="126" r="9" fill="#0f172a"/><path d="M145.500 126l3 3 6-6" stroke="#f59e0b" stroke-width="2.500" fill="none"/></symbol>
+</svg>
 
 <header id="top" class="sticky top-0 z-40 bg-white/90 backdrop-blur transition-shadow" style="padding-top:env(safe-area-inset-top,0px)">
   <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between" aria-label="Main">
-    <a href="#top" class="font-head font-extrabold tracking-tight">Douglas <span class="text-secondary font-semibold">Auto Repair Express</span></a>
+    <a href="#top" class="font-head font-extrabold tracking-tight">Douglas <span class="text-secondary font-semibold hidden min-[400px]:inline">Auto Repair Express</span></a>
     <ul class="hidden lg:flex gap-8 text-sm text-secondary">
       <li><a class="hover:text-primary" href="#services">Services</a></li>
       <li><a class="hover:text-primary" href="#dispatch">Mobile Dispatch</a></li>
@@ -101,7 +112,7 @@
 <!-- Hero -->
 <section class="max-w-6xl mx-auto px-5 pt-16 pb-24 lg:pt-24 grid lg:grid-cols-5 gap-14 items-center">
   <div class="lg:col-span-3">
-    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold">
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold">
       <span class="ln"><span style="--i:0">Houston’s Most</span></span>
       <span class="ln"><span style="--i:1">Trusted Auto Repair</span></span>
       <span class="ln"><span style="--i:2">&amp; Rapid Roadside</span></span>
@@ -117,6 +128,7 @@
 
   <!-- Live dispatch ticket -->
   <div class="fade lg:col-span-2" style="--d:900ms" aria-label="Example dispatch progress">
+    <svg class="pic mb-4" role="img" aria-label="Douglas tow truck carrying a car at night" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><use href="#i-tow"/></svg>
     <div class="border border-slate-200 bg-white rounded-lg p-6 shadow-sm">
       <p class="font-head font-bold">Your dispatch, step by step</p>
       <div class="mt-4 h-0.5 bg-slate-100"><div id="tkFill" class="h-full bg-accent"></div></div>
@@ -158,17 +170,20 @@
     <h2 class="reveal text-3xl sm:text-4xl font-extrabold">Three ways we get you moving.</h2>
     <div class="mt-12">
       <div class="h-px bg-slate-200 draw"></div>
-      <a id="dispatch" href="#book" class="row reveal flex items-start justify-between gap-6 py-8">
+      <a id="dispatch" href="#book" class="row reveal flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8">
+        <svg class="pic thumb" role="img" aria-label="Tow truck" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><use href="#i-tow"/></svg>
         <div><h3 class="text-2xl font-bold">Mobile Roadside Dispatch</h3><p class="mt-2 text-secondary max-w-xl">A mechanic comes to you for jump starts, tires, lockouts, and on-site repairs. Powered by the Douglas mobile app.</p></div>
         <span class="arrow text-2xl text-accent" aria-hidden="true">&rarr;</span>
       </a>
       <div class="h-px bg-slate-200"></div>
-      <a href="#book" class="row reveal flex items-start justify-between gap-6 py-8">
+      <a href="#book" class="row reveal flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8">
+        <svg class="pic thumb" role="img" aria-label="Engine and wrench" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><use href="#i-shop"/></svg>
         <div><h3 class="text-2xl font-bold">Full-Shop Diagnostics &amp; Repair</h3><p class="mt-2 text-secondary max-w-xl">Engine, brakes, suspension, and electrical at 9525 Boone Rd, with clear findings before any work.</p></div>
         <span class="arrow text-2xl text-accent" aria-hidden="true">&rarr;</span>
       </a>
       <div class="h-px bg-slate-200"></div>
-      <a id="apps" href="#book" class="row reveal flex items-start justify-between gap-6 py-8">
+      <a id="apps" href="#book" class="row reveal flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8">
+        <svg class="pic thumb" role="img" aria-label="Itemized invoice" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><use href="#i-inv"/></svg>
         <div><h3 class="text-2xl font-bold">Instant Estimate &amp; Invoicing</h3><p class="mt-2 text-secondary max-w-xl">Itemized parts and labor, built in our desktop app and shared with you before you approve.</p></div>
         <span class="arrow text-2xl text-accent" aria-hidden="true">&rarr;</span>
       </a>
@@ -191,7 +206,7 @@
 <section id="reviews" class="bg-primary text-white py-24">
   <div class="max-w-4xl mx-auto px-5 text-center">
     <p class="reveal text-slate-300"><span class="text-accent">4.8★</span> from 900+ Houston drivers</p>
-    <div class="reveal relative mt-8 h-56 sm:h-44" id="rv" aria-live="polite">
+    <div class="reveal grid mt-8" id="rv" aria-live="polite">
       <figure class="rv on"><blockquote class="font-head text-2xl sm:text-3xl font-bold leading-snug">“They showed me the estimate on my phone before touching the car. No surprises at pickup.”</blockquote><figcaption class="mt-4 text-sm text-slate-400">Sample review · Alief, Houston</figcaption></figure>
       <figure class="rv"><blockquote class="font-head text-2xl sm:text-3xl font-bold leading-snug">“Battery died on a Sunday night. A mechanic reached me and had me running fast.”</blockquote><figcaption class="mt-4 text-sm text-slate-400">Sample review · Southwest Houston</figcaption></figure>
       <figure class="rv"><blockquote class="font-head text-2xl sm:text-3xl font-bold leading-snug">“Clear invoice, fair price, and they explained every line.”</blockquote><figcaption class="mt-4 text-sm text-slate-400">Sample review · Boone Rd area</figcaption></figure>
